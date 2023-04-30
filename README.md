@@ -5,7 +5,7 @@
 
 
 ## Overview
-ROS Bootcamp material for UTSA RAS' Summer of Bots. Material derived from https://rsl.ethz.ch/education-students/lectures/ros.html
+ROS Bootcamp material for UTSA RAS' Summer of Bots. Material derived from [ETH Zurich - ROS Course](https://rsl.ethz.ch/education-students/lectures/ros.html)
 Repo includes course material and a solutions branch for those that cannot attend the event in person.
 
 ## Prerequisites
@@ -24,12 +24,12 @@ It is recommended to create a new ROS workspace and copy this repo into it. Inst
     ```
 2. Clone the contents of this repo into your src directory
     ```
-    git clone https://github.com/jc-cr/ros_bootcamp .
+    git clone https://github.com/UTSARobotics/ros1_bootcamp.git .
     ```
     
     To clone a specific branch (*solutions in this case*):
     ```
-    git clone https://github.com/jc-cr/ros_bootcamp -b solutions .
+    git clone https://github.com/UTSARobotics/ros1_bootcamp.git -b solutions .
     ```
 
 3. Now go up your new workspace and compile the packages:
