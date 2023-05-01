@@ -1,67 +1,48 @@
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
+#include <geometry_msgs/Twist.h>
 
-/* The laserScanCallback function processes incoming laser scan data.
- The input parameter is a shared pointer to a constant LaserScan message.
- The LaserScan message type is part of the sensor_msgs package.
+// Global publisher for publishing twist commands to /cmd_vel topic
+ros::Publisher cmd_vel_pub;
 
- LaserScan message structure:
- - Header header
- - float32 angle_min
- - float32 angle_max
- - float32 angle_increment
- - float32 time_increment
- - float32 scan_time
- - float32 range_min
- - float32 range_max
- - float32[] ranges
- - float32[] intensities
+// P-controller gain
+const double Kp = 1.0;
+const double min_distance_threshold = 0.01; // Set the threshold as needed
 
- Documentation: http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/LaserScan.html
-*/
+void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr& msg) 
+{
+  // Find the index of the smallest distance measurement
+  size_t min_range_idx = std::distance(
+      msg->ranges.begin(),
+      std::min_element(msg->ranges.begin(), msg->ranges.end()));
 
-void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr& msg) {
-  // The laserScanCallback function processes incoming laser scan data
-  // provided in a shared pointer to a constant LaserScan message.
-  //
-  // The LaserScan message contains an array of range measurements (in meters)
-  // that represent the distance to obstacles at different angles.
-  // The array is indexed based on the angle, starting from angle_min and
-  // increasing by angle_increment up to angle_max.
-
-  // Initialize a variable to store the smallest distance measurement
-  // Set its initial value to the maximum possible float value
-  float min_range = std::numeric_limits<float>::max();
-
-  // Iterate through the received laser scan ranges
-  for (size_t i = 0; i < msg->ranges.size(); i++) {
-    // Check if the current range measurement is smaller than the
-    // previously stored minimum range
-    if (msg->ranges[i] < min_range) {
-      // If so, update the minimum range with the current range measurement
-      min_range = msg->ranges[i];
-    }
+  // Calculate the angle corresponding to the minimum range index
+  double angle_to_pillar = msg->angle_min + min_range_idx * msg->angle_increment;
+  geometry_msgs::Twist twist;
+  if (msg->ranges[min_range_idx] <= min_distance_threshold) 
+  {
+    // Stop the robot if it's close enough to the pillar
+    twist.linear.x = 0;
+    twist.angular.z = 0;
+  } 
+  
+  else {
+  // Calculate the linear and angular velocities using the P-controller
+  twist.linear.x = msg->ranges[min_range_idx] * cos(angle_to_pillar) * Kp;
+  twist.angular.z = angle_to_pillar * Kp;
   }
-
-  // After iterating through all the range measurements, the min_range variable
-  // contains the smallest distance measurement found.
-  // Print the smallest distance measurement to the terminal
-  ROS_INFO("Smallest distance measurement: %f", min_range);
+  
+  // Publish the twist command to the /cmd_vel topic
+  cmd_vel_pub.publish(twist);
 }
 
 int main(int argc, char** argv) 
 {
   // Initialize the ROS node
-  ros::init(argc, argv, "laser_scan_subscriber");
+  ros::init(argc, argv, "smb_highlevel_controller");
 
   // Create a NodeHandle to manage communication with the ROS system
   ros::NodeHandle nh;
-
-  /*
-	  // Subscribe to the "/scan" topic with a queue size of 1000 and
-	  // provide a callback function to process the incoming messages
-	  ros::Subscriber sub = nh.subscribe("/scan", 1000, laserScanCallback);	
-   */
 
   // Read the topic name and queue size from the parameter server
   std::string scan_topic;
@@ -72,6 +53,10 @@ int main(int argc, char** argv)
   // Subscribe to the specified topic with the specified queue size and
   // provide a callback function to process the incoming messages
   ros::Subscriber sub = nh.subscribe(scan_topic, queue_size, laserScanCallback);
+
+  // Create a publisher to publish twist commands to the /cmd_vel topic
+  cmd_vel_pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
+
   // Spin in a loop and call the laserScanCallback function when new messages arrive
   ros::spin();
 
