@@ -8,9 +8,12 @@ This bootcamp will give an introduction to the Robot Operating System (ROS) incl
 
 Material derived from [ETH Zurich - ROS Course](https://rsl.ethz.ch/education-students/lectures/ros.html)
 
-**Note:** Examples and slides are undergoing changes as of May 2. Check back the day before the first scheduled lecture for the latest material.
 
-||All material will be available on our GitHub repository: [https://github.com/UTSARobotics/ros1_bootcamp](https://github.com/UTSARobotics/ros1_bootcamp)||
+<details>
+  <summary>**Note:** Examples and slides are undergoing changes as of May 2. Check back the day before the first scheduled lecture for the latest material.</summary>
+  
+  All material will be available on our GitHub repository: [https://github.com/UTSARobotics/ros1_bootcamp](https://github.com/UTSARobotics/ros1_bootcamp)
+  </details>
 
 ### RSVP here: (link)
 
