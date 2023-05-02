@@ -7,9 +7,12 @@
   <rosparam command="load" file="$(find smb_highlevel_controller)/config/params.yaml" />
 
   <!-- Run the laser_scan_subscriber -->
-  <node name="laser_scan_subscriber" pkg="smb_highlevel_controller" type="laser_scan_subscriber" output="screen" />
+  <!-- <node name="laser_scan_subscriber" pkg="smb_highlevel_controller" type="laser_scan_subscriber" output="screen" /> -->
 
  <!-- Run the smb_highlevel_controller node -->
   <node name="smb_highlevel_controller" pkg="smb_highlevel_controller" type="smb_highlevel_controller_node" output="screen" />
+  
+  <!-- Run node to marker pillar TF location in Rviz -->
+  <node name="pillar_position_transformer" pkg="smb_highlevel_controller" type="pillar_position_transformer_node" />
 </launch>
 
