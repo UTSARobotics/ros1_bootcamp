@@ -8,12 +8,9 @@ This bootcamp will give an introduction to the Robot Operating System (ROS) incl
 
 Material derived from [ETH Zurich - ROS Course](https://rsl.ethz.ch/education-students/lectures/ros.html)
 
+**Note:** Examples and slides are undergoing changes as of May 2. Check back the day before the first scheduled lecture for the latest material.
 
-<details>
-  <summary>**Note:** Examples and slides are undergoing changes as of May 2. Check back the day before the first scheduled lecture for the latest material.</summary>
-  
-  All material will be available on our GitHub repository: [https://github.com/UTSARobotics/ros1_bootcamp](https://github.com/UTSARobotics/ros1_bootcamp)
-  </details>
+||All material will be available on our GitHub repository: [https://github.com/UTSARobotics/ros1_bootcamp](https://github.com/UTSARobotics/ros1_bootcamp)||
 
 ### RSVP here: (link)
 
@@ -28,6 +25,8 @@ Material derived from [ETH Zurich - ROS Course](https://rsl.ethz.ch/education-st
 
 ### Prerequisites for Bootcamp
 
+Must have **full ROS installation** to participate in this bootcamp. To do so, follow this link: [ROS Install](http://wiki.ros.org/noetic/Installation/Ubuntu)
+
 No prior programming knowledge is required. Examples will be programmed in C++ and explained at a high-level.
 
 For this bootcamp, we will also have about 4 preconfigured computers available in the presentation lab; these may be shared depending on attendance.
@@ -40,9 +39,6 @@ We highly recommend bringing your own computer running Ubuntu 20.04 OS to get th
 > #### Disclaimer
 > Please note that the instructor has not personally tested these alternative methods and cannot confirm their compatibility or performance for this course. You may use these alternatives at your own risk, and support may be limited.
 
-Then, ensure the following software is installed on your system:
-- ROS Noetic (for Ubuntu 20.04) or ROS Melodic (for Ubuntu 18.04)
-- Gazebo (included with ROS installation)
 
 
 ### Day-by-Day Breakdown
