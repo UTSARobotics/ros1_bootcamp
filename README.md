@@ -10,9 +10,8 @@ Material derived from [ETH Zurich - ROS Course](https://rsl.ethz.ch/education-st
 
 **Note:** Examples and slides are undergoing changes as of May 2. Check back the day before the first scheduled lecture for the latest material.
 
-||All material will be available on our GitHub repository: [https://github.com/UTSARobotics/ros1_bootcamp](https://github.com/UTSARobotics/ros1_bootcamp)||
+All material will be available on our GitHub repository: [https://github.com/UTSARobotics/ros1_bootcamp](https://github.com/UTSARobotics/ros1_bootcamp)
 
-### RSVP here: (link)
 
 ### Scheduling
 - 4 lectures over 4 days
