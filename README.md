@@ -90,8 +90,30 @@ It is recommended to create a new ROS workspace and copy this repo into it. Inst
     git clone https://github.com/UTSARobotics/ros1_bootcamp.git -b solutions .
     ```
 
-3. Now go up your new workspace and compile the packages:
+
+## Handling Package Dependencies
+Our ROS packages might have specific dependencies on other ROS packages or system libraries. These dependencies are defined in the package.xml file of each package.
+
+To automatically install these dependencies, you can use rosdep. This tool checks the package.xml files in your ROS workspace, identifies the dependencies, and installs them if they are not already installed.
+
+Follow these steps after cloning the repository and before building the workspace:
+1. Navigate to the root of your catkin workspace:
     ```
-    cd .. && catkin_make
+    cd ~/ros_bootcamp_ws
+
+    ```
+3. Update rosdep:
+    ```
+    sudo rosdep init
+    rosdep update
+    ```
+    *May get error after rosdep init. If so just ignore and ro the update command.*
+4. Install dependencies:
+    ```
+    rosdep install --from-paths src --ignore-src -r -y
+    ```
+5. Build your workspace:
+    ```
+     catkin_make
     ```
     You should have no errors after running catkin_make.
