@@ -100,7 +100,6 @@ Follow these steps after cloning the repository and before building the workspac
 1. Navigate to the root of your catkin workspace:
     ```
     cd ~/ros_bootcamp_ws
-
     ```
 3. Update rosdep:
     ```
