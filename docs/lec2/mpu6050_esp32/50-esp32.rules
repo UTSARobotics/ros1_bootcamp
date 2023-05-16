@@ -1,4 +1,0 @@
-SUBSYSTEM=="tty", GROUP="plugdev", MODE="0660"
-
-SUBSYSTEMS=="usb", ATTRS{idProduct}=="ea60", ATTRS{idVendor}=="10c4", KERNEL=="ttyUSB*", SYMLINK+="esp32"
-
