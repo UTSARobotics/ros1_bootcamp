@@ -62,3 +62,52 @@ int main(int argc, char** argv)
 
   return 0;
 }
+
+// Changes to implement stopping service:
+
+// #include <ros/ros.h>
+// #include <sensor_msgs/LaserScan.h>
+// #include <geometry_msgs/Twist.h>
+// #include <std_srvs/SetBool.h> // Include the SetBool service type
+// 
+// // Global publisher for publishing twist commands to /cmd_vel topic
+// ros::Publisher cmd_vel_pub;
+// 
+// // P-controller gain
+// const double Kp = 1.0;
+// const double min_distance_threshold = 0.01; // Set the threshold as needed
+// 
+// // Global flag to indicate whether robot should move
+// bool should_move = true;
+// 
+// // Service callback
+// bool set_movement(std_srvs::SetBool::Request &req, std_srvs::SetBool::Response &res)
+// {
+//     should_move = req.data; // Update the should_move flag based on service request
+//     res.success = true;
+//     res.message = "Successfully set robot movement state.";
+//     return true;
+// }
+// 
+// void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr& msg) 
+// {
+//     if (!should_move) return; // If the robot should not move, return immediately
+// 
+//     // The rest of your callback function remains the same...
+// }
+// 
+// int main(int argc, char** argv) 
+// {
+//     // Initialize the ROS node
+//     ros::init(argc, argv, "smb_highlevel_controller");
+// 
+//     // Create a NodeHandle to manage communication with the ROS system
+//     ros::NodeHandle nh;
+// 
+//     // Create a service server
+//     std::string service_name;
+//     nh.param<std::string>("movement_service_name", service_name, "set_movement");
+//     ros::ServiceServer service = nh.advertiseService(service_name, set_movement);
+// 
+//     // The rest of your main function remains the same...
+// }
