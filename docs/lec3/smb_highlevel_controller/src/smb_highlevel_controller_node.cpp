@@ -19,6 +19,7 @@ void laserScanCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
   // Calculate the angle corresponding to the minimum range index
   double angle_to_pillar = msg->angle_min + min_range_idx * msg->angle_increment;
   geometry_msgs::Twist twist;
+  
   if (msg->ranges[min_range_idx] <= min_distance_threshold) 
   {
     // Stop the robot if it's close enough to the pillar
